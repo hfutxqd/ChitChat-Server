@@ -12,7 +12,7 @@ class explore extends spModel
         $color = $ob['color'];
         $longitude = $ob['longitude'];
         $latitude = $ob['latitude'];
-        $loctionAdrr = $ob['loctionAdrr'];
+        $locationAddr = $ob['locationAddr'];
         $content = json_encode($ob['content']);
         $res = $this->create(array(
             'device_id' => "$device_id",
@@ -20,7 +20,7 @@ class explore extends spModel
             'content' => "$content",
             'latitude' => $latitude,
             'longitude' => $longitude,
-            'loctionAdrr' => $loctionAdrr,
+            'locationAddr' => $locationAddr,
             'color' => $color,
         ));
         return $res;

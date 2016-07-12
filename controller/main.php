@@ -128,6 +128,10 @@ class main extends spController
             $data[$key]['content'] = json_decode($data[$key]['content']);
             $res = $explore->findSql('SELECT * FROM `likes` WHERE `device_id` = "' . $device_id . '" AND `explore_id` = ' . $data[$key]['id'] . '; ');
             $data[$key]['isLiked'] = ($res != null);
+            if($data[$key]['locationAddr'] == 'none') {
+                $data[$key]['latitude'] = 0;
+                $data[$key]['longitude'] = 0;
+            }
         }
         echo json_encode($data);
     }
@@ -143,6 +147,10 @@ class main extends spController
             $data[$key]['content'] = json_decode($data[$key]['content']);
             $res = $explore->findSql('SELECT * FROM `likes` WHERE `device_id` = "' . $device_id . '" AND `explore_id` = ' . $data[$key]['id'] . '; ');
             $data[$key]['isLiked'] = ($res != null);
+            if($data[$key]['locationAddr'] == 'none') {
+                $data[$key]['latitude'] = 0;
+                $data[$key]['longitude'] = 0;
+            }
         }
         $pager = $explore->spPager()->getPager();
         if (is_null($pager)) {
@@ -177,6 +185,10 @@ class main extends spController
             $data[$key]['content'] = json_decode($data[$key]['content']);
             $res = $explore->findSql('SELECT * FROM `likes` WHERE `device_id` = "' . $device_id . '" AND `explore_id` = ' . $data[$key]['id'] . '; ');
             $data[$key]['isLiked'] = ($res != null);
+            if($data[$key]['locationAddr'] == 'none') {
+                $data[$key]['latitude'] = 0;
+                $data[$key]['longitude'] = 0;
+            }
         }
         $pager = $explore->spPager()->getPager();
         if (is_null($pager)) {
