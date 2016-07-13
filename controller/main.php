@@ -214,6 +214,33 @@ class main extends spController
         echo json_encode($data);
     }
 
+    function getHeader()
+    {
+        $device_id = $this->spArgs('device_id', 0);
+        $header = spClass("user_header");
+        $res = $header->find("device_id = '$device_id'");
+        if($res) {
+            $rtn['success'] = true;
+            $rtn['url'] = $res['header_url'];
+        } else {
+            $rtn['success'] = false;
+        }
+        echo  json_encode($rtn);
+    }
+
+    function setHeader()
+    {
+        $device_id = $this->spArgs('device_id');
+        $url = $this->spArgs('url');
+        $header = spClass("user_header");
+        $header->updateField("device_id = '$device_id'","header_url", $url);
+        $rtn['success'] = true;
+        if($header->affectedRows() < 1) {
+            $header->runSql("INSERT INTO user_header (device_id, header_url) VALUES ('$device_id', '$url')");
+        }
+        echo  json_encode($rtn);
+    }
+
 
     function upload()
     {
